@@ -10,7 +10,7 @@ def read_file():
 def extract_number(line):
     numbers = "".join([digit for digit in line if digit in string.digits])
     if len(numbers) > 2:
-        numbers = numbers[:1] + numbers[-1:]
+        numbers = numbers[0] + numbers[-1]
     if len(numbers) == 1:
         numbers *= 2
     return numbers
