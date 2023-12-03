@@ -43,18 +43,16 @@ def get_number(number_bound, schematics):
     )
 
 
-def is_adjacent_to_symbol(number_bound, schematics, h, w):
+def is_adjacent_to_symbol(number_bound, schematics):
     left_upper_bound = number_bound[0]
     right_lower_bound = number_bound[1]
     for x in range(left_upper_bound[0], right_lower_bound[0] + 1):
         for y in range(left_upper_bound[1], right_lower_bound[1] + 1):
             char = schematics[x][y]
-
-            if char in string.digits:
-                continue
             if char == ".":
                 continue
-            return True
+            if char in string.punctuation:
+                return True
     return False
 
 
@@ -88,7 +86,7 @@ def part1():
         (
             get_number(number_bound, schematics),
             get_number_with_borders(number_bound, schematics),
-            is_adjacent_to_symbol(number_bound, schematics, h, w),
+            is_adjacent_to_symbol(number_bound, schematics),
         )
         for number_bound in number_bounds_in_schematics
     ]
@@ -97,6 +95,7 @@ def part1():
 
 
 def part2():
+    # no more time :/
     pass
 
 
