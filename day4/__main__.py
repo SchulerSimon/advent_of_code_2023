@@ -45,6 +45,18 @@ def matches_to_score(matches: int):
         return 2 ** (matches - 1)
 
 
+def calc_number_of_cards(all_matches, start, stop):
+    result = 1
+    for card_index, match in enumerate(all_matches[start - 1 : stop - 1]):
+        if match == 0:
+            result += 1
+        else:
+            _from = start + 1 + card_index
+            _to = _from + match
+            result += calc_number_of_cards(all_matches, start=_from, stop=_to)
+    return result
+
+
 def part1():
     data = read_file()
     cards = parse_cards(data)
@@ -54,8 +66,11 @@ def part1():
 
 
 def part2():
-    # no more time :/
-    pass
+    data = read_file()
+    cards = parse_cards(data)
+    matches = [count_matches(card) for card in cards]
+    result = calc_number_of_cards(matches, start=1, stop=len(matches))
+    print(result)
 
 
 if __name__ == "__main__":
